@@ -1,0 +1,19 @@
+{
+  "format": "JOYARCH1-split",
+  "version": 1,
+  "source_filename": "joyce-story-archive-v2_2.enc",
+  "source_size": 36557692,
+  "source_sha256": "5fa925036577270218987a1188f87a3e339250f96cf54ec0dd0f8032024924d7",
+  "parts": [
+    {
+      "name": "joyce-story-archive-v2_2.enc.part1",
+      "size": 20000000,
+      "sha256": "1e4d5c8fb7f23531681830dde3fdcdbd43f61af9edaacac319ebcca0d2655455"
+    },
+    {
+      "name": "joyce-story-archive-v2_2.enc.part2",
+      "size": 16557692,
+      "sha256": "de8c3c5880d8d617143b8bb21708442900d42945a2724f8491a555c70c6df26e"
+    }
+  ]
+}

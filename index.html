@@ -1,21 +1,255 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="robots" content="noindex,nofollow,noarchive">
-  <title>Story Archive Data</title>
-  <style>
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center;
-      background: #111; color: #ddd; font: 16px/1.5 system-ui, sans-serif; }
-    main { max-width: 560px; padding: 32px; text-align: center; }
-    p { color: #999; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Joyce Chat Archive v2.3 Cloud</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg:#101113; --panel:#191b1f; --soft:#23262c; --soft2:#2a2e35;
+  --text:#f4f4f5; --muted:#a6a8ad; --accent:#a8bfff; --border:#343840;
+  --current:#7fb3ff; --legacy:#d9a56d; --canon:#77c98f; --reference:#b9a0ff; --noncanon:#e28080; --saved:#e1bd57;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:#f5f6f8; --panel:#fff; --soft:#f0f2f5; --soft2:#e9ecf1;
+    --text:#18191b; --muted:#666b73; --accent:#315dcf; --border:#d8dce3;
+    --current:#2f6cbf; --legacy:#9b652e; --canon:#2f7b48; --reference:#7156b7; --noncanon:#aa4545; --saved:#866c12;
+  }
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:var(--bg); color:var(--text); font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+.wrap { max-width:1120px; margin:auto; padding:18px 16px 80px; }
+h1 { font-size:25px; margin:0 0 2px; }
+.sub { color:var(--muted); margin-bottom:14px; }
+.searchbar { position:sticky; top:0; z-index:30; background:color-mix(in srgb,var(--bg) 94%, transparent); backdrop-filter:blur(14px); padding:10px 0 12px; }
+input[type=search], input[type=text], input[type=password], select, textarea {
+  border:1px solid var(--border); border-radius:10px; background:var(--panel); color:var(--text); outline:none;
+}
+input[type=search], input[type=text], input[type=password] { width:100%; padding:13px 14px; font-size:16px; }
+textarea { width:100%; min-height:100px; padding:10px 12px; font:inherit; resize:vertical; }
+input:focus, select:focus, textarea:focus { border-color:var(--accent); }
+.grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; margin-top:9px; }
+.grid label { font-size:11px; color:var(--muted); display:flex; flex-direction:column; gap:4px; }
+select { padding:8px; font-size:13px; }
+.row { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:8px; }
+.check { display:flex; align-items:center; gap:5px; color:var(--muted); font-size:12px; }
+button, .btn {
+  appearance:none; border:1px solid var(--border); background:var(--soft); color:var(--text); border-radius:9px;
+  padding:7px 10px; font:inherit; font-size:12px; cursor:pointer; text-decoration:none;
+}
+button:hover, .btn:hover { border-color:var(--accent); }
+button.primary { border-color:var(--accent); }
+button:disabled { opacity:.35; cursor:default; }
+.status { margin:13px 0; color:var(--muted); }
+.card { background:var(--panel); border:1px solid var(--border); border-radius:14px; margin:10px 0; overflow:hidden; }
+.card.saved { border-color:color-mix(in srgb,var(--saved) 65%,var(--border)); }
+.cardHead { padding:11px 13px 8px; display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+.title { font-weight:720; }
+.meta { color:var(--muted); font-size:12px; margin-top:2px; }
+.badges { display:flex; flex-wrap:wrap; gap:4px; justify-content:flex-end; }
+.badge { display:inline-block; border:1px solid var(--border); border-radius:999px; padding:2px 7px; font-size:10px; font-weight:700; letter-spacing:.03em; }
+.badge.current { color:var(--current); }
+.badge.legacy { color:var(--legacy); }
+.badge.canon { color:var(--canon); }
+.badge.reference { color:var(--reference); }
+.badge.noncanon { color:var(--noncanon); }
+.badge.saved { color:var(--saved); }
+.badge.alt { color:var(--legacy); }
+.snip { padding:4px 13px 12px; white-space:pre-wrap; overflow-wrap:anywhere; }
+mark { background:#ffe26c; color:#111; padding:0 1px; border-radius:2px; }
+.actions { border-top:1px solid var(--border); padding:8px 10px; display:flex; gap:6px; flex-wrap:wrap; }
+.full,.context,.annot { display:none; border-top:1px solid var(--border); padding:12px 13px; }
+.full { white-space:pre-wrap; overflow-wrap:anywhere; max-height:68vh; overflow:auto; }
+.ctx { border-left:3px solid var(--border); padding:8px 10px; margin:7px 0; background:var(--soft); border-radius:0 8px 8px 0; }
+.ctx.match { border-left-color:var(--accent); }
+.ctx .who { color:var(--muted); font-size:11px; margin-bottom:4px; }
+.ctx .body { white-space:pre-wrap; max-height:240px; overflow:auto; }
+.annot-grid { display:grid; grid-template-columns:220px 1fr; gap:10px; align-items:start; }
+.annot .label { font-size:12px; color:var(--muted); margin-bottom:5px; }
+.toolbar { display:flex; flex-wrap:wrap; gap:7px; margin:10px 0 4px; }
+.stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin:10px 0 16px; }
+.stat { border:1px solid var(--border); background:var(--panel); border-radius:12px; padding:10px 11px; }
+.stat b { display:block; font-size:18px; }
+.stat span { font-size:11px; color:var(--muted); }
+#loading { padding:18px; border:1px solid var(--border); border-radius:12px; background:var(--panel); }
+#toast { position:fixed; left:50%; bottom:24px; transform:translateX(-50%); z-index:120; display:none;
+  background:var(--soft2); border:1px solid var(--border); border-radius:10px; padding:9px 13px; box-shadow:0 8px 30px #0004; }
+.modal { position:fixed; inset:0; z-index:80; background:#0008; display:none; align-items:center; justify-content:center; padding:16px; }
+.modalBox { max-width:620px; width:100%; max-height:80vh; overflow:auto; background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px; }
+.modal h2 { margin:0 0 8px; font-size:19px; }
+.notePreview { color:var(--muted); font-size:12px; margin-top:5px; font-style:italic; }
+
+/* Branch reader */
+.reader { position:fixed; inset:0; z-index:100; background:var(--bg); display:none; overflow:hidden; }
+.readerShell { height:100%; max-width:960px; margin:auto; display:flex; flex-direction:column; }
+.readerTop { padding:10px 12px; border-bottom:1px solid var(--border); background:var(--panel); display:flex; gap:8px; align-items:center; justify-content:space-between; }
+.readerTop .readerTitle { font-weight:750; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.readerTop .readerMeta { font-size:11px; color:var(--muted); }
+.readerBody { flex:1; overflow:auto; padding:20px 16px 120px; }
+.readerMessage { border:1px solid var(--border); background:var(--panel); border-radius:14px; overflow:hidden; }
+.readerHeader { padding:12px 14px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
+.readerWho { font-weight:760; }
+.readerText { padding:18px 16px; white-space:pre-wrap; overflow-wrap:anywhere; font-size:16px; line-height:1.6; }
+.readerNote { border-top:1px solid var(--border); padding:12px 14px; }
+.readerNav { position:absolute; bottom:0; left:0; right:0; border-top:1px solid var(--border); background:color-mix(in srgb,var(--panel) 96%,transparent); backdrop-filter:blur(14px); }
+.readerNavInner { max-width:960px; margin:auto; padding:10px 12px; display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:center; }
+.navLeft { text-align:left; }
+.navMid { text-align:center; font-size:12px; color:var(--muted); }
+.navRight { text-align:right; }
+.branchChoices { margin-top:14px; border-top:1px solid var(--border); padding-top:12px; }
+.choice { display:block; width:100%; text-align:left; margin:7px 0; padding:10px 11px; background:var(--soft); border:1px solid var(--border); border-radius:10px; }
+.choice small { display:block; color:var(--muted); margin-bottom:3px; }
+.choice .preview { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.versionBar { margin-top:12px; display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+.versionBar .label { color:var(--muted); font-size:12px; }
+.readerAnnot { display:grid; grid-template-columns:180px 1fr; gap:10px; align-items:start; margin-top:12px; }
+.readerAnnot label { font-size:11px; color:var(--muted); display:block; margin-bottom:4px; }
+.readerClose { font-size:14px; }
+
+@media(max-width:780px){
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .annot-grid,.readerAnnot { grid-template-columns:1fr; }
+  .cardHead,.readerHeader { display:block; }
+  .badges { justify-content:flex-start; margin-top:7px; }
+}
+@media(max-width:480px){
+  .wrap { padding:10px 9px 60px; }
+  h1 { font-size:22px; }
+  .readerBody { padding:12px 10px 120px; }
+  .readerText { font-size:15px; }
+  .readerNavInner { grid-template-columns:1fr 1fr; }
+  .navMid { grid-column:1 / -1; grid-row:1; }
+  .navLeft { grid-column:1; }
+  .navRight { grid-column:2; }
+}
+</style>
 </head>
 <body>
-  <main>
-    <h1>Story Archive Data</h1>
-    <p>Encrypted application data host. There is nothing readable here.</p>
-  </main>
+<div class="wrap">
+  <h1>Joyce Chat Archive <span style="color:var(--muted);font-weight:500">v2.3 Cloud</span></h1>
+  <div class="sub">Current canon archive + legacy archaeology + branch reading · encrypted cloud edition.</div>
+  <div id="loading">
+    <div id="vaultBox">
+      <b>Archive locked</b>
+      <p style="margin:6px 0 12px;color:var(--muted);font-size:13px">Enter your private vault passphrase to fetch and decrypt the archive in this browser. The passphrase is not stored or sent anywhere.</p>
+      <input id="vaultPass" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Vault passphrase">
+      <div class="row">
+        <button id="unlockBtn" class="primary">Unlock archive</button>
+        <label class="check"><input id="showVaultPass" type="checkbox"> Show passphrase</label>
+      </div>
+      <div id="loadStatus" style="margin-top:10px;color:var(--muted);font-size:12px">Encrypted archive data is hosted separately from this Tumblr reader.</div>
+    </div>
+  </div>
+
+  <div id="app" hidden>
+    <div id="stats" class="stats"></div>
+
+    <div class="searchbar">
+      <input id="q" type="search" autocomplete="off" placeholder="Remembered line, phrase, character, scene…">
+      <div class="grid">
+        <label>Account
+          <select id="account">
+            <option value="">All</option>
+            <option value="current">Current</option>
+            <option value="legacy">Legacy</option>
+          </select>
+        </label>
+        <label>Continuity
+          <select id="continuity">
+            <option value="">All</option>
+            <option value="unmarked">Unmarked</option>
+            <option value="canon">Canon</option>
+            <option value="reference">Reference</option>
+            <option value="noncanon">Non-canon</option>
+          </select>
+        </label>
+        <label>Branch
+          <select id="branch">
+            <option value="">All</option>
+            <option value="current">Current branch</option>
+            <option value="alternate">Alternate / edited</option>
+          </select>
+        </label>
+        <label>Speaker
+          <select id="role">
+            <option value="">All</option>
+            <option value="assistant">Assistant</option>
+            <option value="user">Joyce</option>
+          </select>
+        </label>
+        <label>Search mode
+          <select id="mode">
+            <option value="exact">Exact phrase</option>
+            <option value="loose">All words, any order</option>
+            <option value="near">Near phrase</option>
+          </select>
+        </label>
+        <label>Result order
+          <select id="sortOrder">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="row">
+        <label class="check"><input id="savedOnly" type="checkbox"> Saved only</label>
+        <label class="check"><input id="includeRecaps" type="checkbox"> Include reasoning recaps</label>
+      </div>
+
+      <div style="margin-top:8px"><input id="titleFilter" type="text" placeholder="Optional chat-title filter, e.g. HM AU"></div>
+
+      <div class="toolbar">
+        <button id="exportBtn">Export annotations</button>
+        <button id="importBtn">Import annotations</button>
+        <input id="importFile" type="file" accept=".json,application/json" hidden>
+        <button id="helpBtn">What gets saved?</button>
+      </div>
+    </div>
+
+    <div id="status" class="status"></div>
+    <div id="results"></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<div id="helpModal" class="modal">
+  <div class="modalBox">
+    <h2>Annotations & persistence</h2>
+    <p>Your Canon / Reference / Non-canon labels, saved passages, and notes are stored separately from the archive text.</p>
+    <p>On this cloud reader they live in this browser’s <code>localStorage</code>. That normally survives closing and reopening the site in the same browser, but it is <b>not</b> a safe long-term backup and it does not automatically sync between devices.</p>
+    <p><b>Export annotations</b> downloads a tiny JSON backup. Later, when we rebuild the archive from newer ChatGPT exports, those annotations can be re-applied using stable account + message IDs.</p>
+    <p><b>Read branch</b> uses the original parent/child graph in your ChatGPT export. If a turn has multiple continuations, the reader shows them instead of pretending there is only one correct “next” turn.</p>
+    <div class="row"><button onclick="closeHelp()">Close</button></div>
+  </div>
+</div>
+
+<div id="reader" class="reader">
+  <div class="readerShell">
+    <div class="readerTop">
+      <div style="min-width:0">
+        <div id="readerTitle" class="readerTitle"></div>
+        <div id="readerMeta" class="readerMeta"></div>
+      </div>
+      <button class="readerClose" onclick="closeReader()">Close</button>
+    </div>
+    <div id="readerBody" class="readerBody"></div>
+    <div class="readerNav">
+      <div class="readerNavInner">
+        <div class="navLeft"><button id="readerPrev" onclick="readerPrev()">← Previous</button></div>
+        <div id="readerPosition" class="navMid"></div>
+        <div class="navRight"><button id="readerNext" onclick="readerNext()">Next →</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./app.js"></script>
 </body>
 </html>

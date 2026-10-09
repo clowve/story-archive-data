@@ -1,7 +1,7 @@
 {
   "format": "JOYARCH2-encrypted-shards",
   "version": 1,
-  "generated_at": "2026-10-09T00:53:12.666Z",
+  "generated_at": "2026-10-09T01:53:55.239Z",
   "shard_count": 16,
   "shard_hash": "fnv1a32_mod",
   "stats": {
@@ -22,14 +22,14 @@
     "name": "PBKDF2",
     "hash": "SHA-256",
     "iterations": 310000,
-    "salt_b64": "Hiv4PuOoT8dQViXbV_ZB5Q"
+    "salt_b64": "6gVuQjYfqz8LJNni8BVJDw"
   },
   "cipher": {
     "name": "AES-GCM"
   },
   "verifier": {
-    "iv_b64": "_yNbeiBt5XgLolHw",
-    "cipher_b64": "7rcuinU39eT4pRz1J2w55Ypg9Vrzpwg-hUSS"
+    "iv_b64": "8jmEgfFh4BlJHLfm",
+    "cipher_b64": "owGitu9MqdAQ1TduuHs3kdOhCdSozabrcMXb"
   },
   "shards": [
     {
@@ -38,8 +38,8 @@
       "messages": 3310,
       "plaintext_gzip_bytes": 2968553,
       "ciphertext_bytes": 2968569,
-      "iv_b64": "fjX4qgODOHGtM7Kq",
-      "sha256_ciphertext": "64eae9c7aa2f72eaf1be28ede3a515fb8de9df20fc61416857d5d362c2cf83b1"
+      "iv_b64": "5ywY-JwAFi7Y7Z0a",
+      "sha256_ciphertext": "e3ed8b0ee5d40461f5383eba365da4623e1223d91282c48c0a711b3531bd2c9f"
     },
     {
       "id": 1,
@@ -47,8 +47,8 @@
       "messages": 3286,
       "plaintext_gzip_bytes": 2794607,
       "ciphertext_bytes": 2794623,
-      "iv_b64": "WpchMDZsooQQXjiR",
-      "sha256_ciphertext": "8eb42300369e31f4256c15d512b8d660dfff4aaca6a641f8ff828590cd22dc2b"
+      "iv_b64": "u1ljqAv00vfhB1wZ",
+      "sha256_ciphertext": "5b8cc62fff7e54ab6dece0e47efe0be9a0c6eb6aaacc8b709d43bcc2207749f0"
     },
     {
       "id": 2,
@@ -56,8 +56,8 @@
       "messages": 3257,
       "plaintext_gzip_bytes": 2699185,
       "ciphertext_bytes": 2699201,
-      "iv_b64": "beQNxYTq6_Gq77Iz",
-      "sha256_ciphertext": "3a7a326cdea36f8cdd12e37b1da88a778893e24ec9a1d4167a493846e3002d54"
+      "iv_b64": "w3gc3N8k9jDSxFpS",
+      "sha256_ciphertext": "901a027b4b77923dc89287764351e5ffba841cf357e477369db57ddd3f713ecf"
     },
     {
       "id": 3,
@@ -65,8 +65,8 @@
       "messages": 3306,
       "plaintext_gzip_bytes": 2871337,
       "ciphertext_bytes": 2871353,
-      "iv_b64": "P3RYpzedv6VK5OTY",
-      "sha256_ciphertext": "5c7d31af5802cd924396122d09844b33a9f5c10f6e493ffeb2d3c161c5840753"
+      "iv_b64": "xO1V01_ab7F1Vwl5",
+      "sha256_ciphertext": "67ec62bd48242af9b49fc1063249ca430485e12dd2a924385089c7b5dfbfac6e"
     },
     {
       "id": 4,
@@ -74,8 +74,8 @@
       "messages": 3178,
       "plaintext_gzip_bytes": 2754376,
       "ciphertext_bytes": 2754392,
-      "iv_b64": "1DUxPZdch3YJzwQo",
-      "sha256_ciphertext": "af0a2eb4acd60cff59bf40e72c8318a315577ede723d1ce9a8bf6cd0112e9c46"
+      "iv_b64": "r8yX7Szs4sLty7Ya",
+      "sha256_ciphertext": "ff7b694c4a5e15e9d71f11634e7abf43c482332fd901d19fd5dafc34c08cfe95"
     },
     {
       "id": 5,
@@ -83,8 +83,8 @@
       "messages": 3223,
       "plaintext_gzip_bytes": 2823644,
       "ciphertext_bytes": 2823660,
-      "iv_b64": "wqBlJuIlQAwlRvUW",
-      "sha256_ciphertext": "ac141124ac3afdbc6bf3eb68ca6f3132dbcff556cdc43c4ea863bf94eaf1bcad"
+      "iv_b64": "t0UP9-AXkuTeVH8n",
+      "sha256_ciphertext": "541b3ecbaa50c9d8120c8d23af5900c8f0d7dea5360eaf92fab428c961deda9c"
     },
     {
       "id": 6,
@@ -92,8 +92,8 @@
       "messages": 3265,
       "plaintext_gzip_bytes": 2716450,
       "ciphertext_bytes": 2716466,
-      "iv_b64": "BPYLISphoSi0YKue",
-      "sha256_ciphertext": "1c373b14687901e859021af7eebede1a6abe4dab621aa983fbad1dbed4035807"
+      "iv_b64": "USGuWF7jc6l_ROl8",
+      "sha256_ciphertext": "d1bfd15a15ac2f83774b01f1f5b549c8fc31ef489d2a61c1573d70d99ce56561"
     },
     {
       "id": 7,
@@ -101,8 +101,8 @@
       "messages": 3123,
       "plaintext_gzip_bytes": 2801061,
       "ciphertext_bytes": 2801077,
-      "iv_b64": "nB1NCwhMY_YKfl39",
-      "sha256_ciphertext": "32f2d5a525c059662d72035037a38b0fcb70e24577982bf7b2fd2803d0ebf8b4"
+      "iv_b64": "-ghqG2oGPE1E4mCo",
+      "sha256_ciphertext": "576eb2967936954934211d3f0595fd6e26deab84accd18ee119c9dc7042e7d97"
     },
     {
       "id": 8,
@@ -110,8 +110,8 @@
       "messages": 3246,
       "plaintext_gzip_bytes": 2796652,
       "ciphertext_bytes": 2796668,
-      "iv_b64": "u1g3e0p85eAXCqLl",
-      "sha256_ciphertext": "98cca0d52e1028bdab57581fa60a7496c5f385ea2eb32066d7dba5169bde01d2"
+      "iv_b64": "XN_rf25_YtplCNid",
+      "sha256_ciphertext": "399fde344c4f68054dd7554bd1175e50ecbf02dd8fabcfc8aeaa5db408dfe156"
     },
     {
       "id": 9,
@@ -119,8 +119,8 @@
       "messages": 3302,
       "plaintext_gzip_bytes": 2786077,
       "ciphertext_bytes": 2786093,
-      "iv_b64": "hqhu-6K8NYO2XmU-",
-      "sha256_ciphertext": "91747c6ec6ff457520df1716c57cda3e6d054d856ceefe5df057f755bea6cf7a"
+      "iv_b64": "r1Yg1d_rjwx2UaHO",
+      "sha256_ciphertext": "4a53a673d6a3b06390e7e911781797d2f4c5e090a587283d05c07c3f5a2bd306"
     },
     {
       "id": 10,
@@ -128,8 +128,8 @@
       "messages": 3130,
       "plaintext_gzip_bytes": 2658232,
       "ciphertext_bytes": 2658248,
-      "iv_b64": "SyaK7Q0fOdIjlVI3",
-      "sha256_ciphertext": "1d44cd310ca8f00ca48aed04852dd84bdf91bbb8a59ad68665fc3b672980b7df"
+      "iv_b64": "H43ti52_odj_VrB0",
+      "sha256_ciphertext": "4c49c870531aa8ff9bb25dced06f9b0e6eaefff2cd1f9d8a26083636ec11110d"
     },
     {
       "id": 11,
@@ -137,8 +137,8 @@
       "messages": 3238,
       "plaintext_gzip_bytes": 2994323,
       "ciphertext_bytes": 2994339,
-      "iv_b64": "Me5Ofg8U0ZRr1BO9",
-      "sha256_ciphertext": "3a23d6acc454d8024022785ee8181a292fcf1a454d3fc53d16a87bed97d93d94"
+      "iv_b64": "T4mZ7d8woADh3Cld",
+      "sha256_ciphertext": "a2a8a0567e0f84510598127690a5055fee2559d29549f215cc5af3af60a084b7"
     },
     {
       "id": 12,
@@ -146,8 +146,8 @@
       "messages": 3326,
       "plaintext_gzip_bytes": 3006284,
       "ciphertext_bytes": 3006300,
-      "iv_b64": "jd3hjtc_IPfdv5of",
-      "sha256_ciphertext": "ef8910bded6b127e34b6118c160c4c2536faf198a69baec7408f205bbae09fc0"
+      "iv_b64": "EMMM87RdgiFa6iLU",
+      "sha256_ciphertext": "417b2218974e3da9e6f97a0a5257bed21e872030c6719f579659b610fd3416b6"
     },
     {
       "id": 13,
@@ -155,8 +155,8 @@
       "messages": 3352,
       "plaintext_gzip_bytes": 2916741,
       "ciphertext_bytes": 2916757,
-      "iv_b64": "delB8zAAX06HIs6D",
-      "sha256_ciphertext": "7dcd014469a9e5a4d3a2d07570a00d0ed2f934927fec8d4921ac9e8e2a543c63"
+      "iv_b64": "w-LQEfUan8RjNm1r",
+      "sha256_ciphertext": "6a3083896a76d937334bee11d0c202c5432e2aec42e9b02b4f91478332291d41"
     },
     {
       "id": 14,
@@ -164,8 +164,8 @@
       "messages": 3299,
       "plaintext_gzip_bytes": 2855340,
       "ciphertext_bytes": 2855356,
-      "iv_b64": "FS8nMqKkY01BQAFw",
-      "sha256_ciphertext": "c0f0209d4bed11f0e06b14c103d399e5c1bd8c0ecdb7007e6a6a3db126bf4c63"
+      "iv_b64": "9J7bPvSab7iJ8lu-",
+      "sha256_ciphertext": "aed6109133d12203a0af1f1a3e761a0afb09c605fab43109e8f01488257aff8f"
     },
     {
       "id": 15,
@@ -173,8 +173,8 @@
       "messages": 3236,
       "plaintext_gzip_bytes": 2732638,
       "ciphertext_bytes": 2732654,
-      "iv_b64": "5hn9DkwTfQahzzUc",
-      "sha256_ciphertext": "f9882ed6e05a2ecef0c64b6bddba48db2e802782632468b958c138c137b52530"
+      "iv_b64": "g2xbEI86Mxl20you",
+      "sha256_ciphertext": "2feb922e02b42ec6e5927bcbcbc86fd4d19341821b3651158d06f9df909ee91a"
     }
   ]
 }

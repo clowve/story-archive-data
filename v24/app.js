@@ -90,10 +90,22 @@ async function unlockArchive(){
       throw new Error("The v2.4 manifest is not in the expected format.");
 
     setLoadStatus("Deriving vault key locally…");
-    vaultKey=await deriveKey(pass,b64urlToBytes(manifest.kdf.salt_b64),manifest.kdf.iterations);
+    const salt=b64urlToBytes(manifest.kdf.salt_b64);
+    const variants=[];
+    const addVariant=v=>{ if(typeof v==="string" && !variants.includes(v)) variants.push(v); };
+    addVariant(pass);
+    addVariant(pass.trim());
+    try{ addVariant(pass.normalize("NFC")); addVariant(pass.trim().normalize("NFC")); }catch{}
+    try{ addVariant(pass.normalize("NFKC")); addVariant(pass.trim().normalize("NFKC")); }catch{}
+    let matchedVariant=-1;
+    for(let i=0;i<variants.length;i++){
+      const candidate=await deriveKey(variants[i],salt,manifest.kdf.iterations);
+      if(await verifyPassphrase(candidate)){ vaultKey=candidate; matchedVariant=i; break; }
+    }
     pass="";
-    if(!(await verifyPassphrase(vaultKey))) throw new Error("That vault passphrase did not unlock this archive.");
+    if(!vaultKey) throw new Error("That vault passphrase did not unlock this archive.");
     passEl.value="";
+    if(matchedVariant>0) toast("Vault unlocked after correcting invisible whitespace / text normalization.");
 
     $("loading").remove();
     $("app").hidden=false;

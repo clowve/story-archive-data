@@ -1,7 +1,7 @@
 {
-  "format": "JOYARCH2-sharded",
+  "format": "JOYARCH2-encrypted-shards",
   "version": 1,
-  "generated_at": 1791394184.8674266,
+  "generated_at": "2026-10-09T01:53:55.239Z",
   "shard_count": 16,
   "shard_hash": "fnv1a32_mod",
   "stats": {
@@ -18,134 +18,35 @@
     "text_conflicts": 0,
     "parent_conflicts": 0
   },
+  "kdf": {
+    "name": "PBKDF2",
+    "hash": "SHA-256",
+    "iterations": 310000,
+    "salt_b64": "6gVuQjYfqz8LJNni8BVJDw"
+  },
+  "cipher": {
+    "name": "AES-GCM"
+  },
+  "verifier": {
+    "iv_b64": "8jmEgfFh4BlJHLfm",
+    "cipher_b64": "owGitu9MqdAQ1TduuHs3kdOhCdSozabrcMXb"
+  },
   "shards": [
-    {
-      "id": 0,
-      "name": "archive-shard-00.json.gz",
-      "messages": 3310,
-      "raw_bytes": 9362428,
-      "gzip_bytes": 2968553,
-      "sha256_plain_gzip": "e32a48d5a50df6f919bbb428e8476fef8225dae1205e24dabb4369e7af33f11c"
-    },
-    {
-      "id": 1,
-      "name": "archive-shard-01.json.gz",
-      "messages": 3286,
-      "raw_bytes": 8870135,
-      "gzip_bytes": 2794607,
-      "sha256_plain_gzip": "239e59b09d8ae2a91ee7572c3c6bd0470bbabb5b603de0aa0ccfbbea5870e75b"
-    },
-    {
-      "id": 2,
-      "name": "archive-shard-02.json.gz",
-      "messages": 3257,
-      "raw_bytes": 8567071,
-      "gzip_bytes": 2699185,
-      "sha256_plain_gzip": "1b5e61206454641722fe3217468ac113b1f4366d274faf9857bcaf0c72bb8922"
-    },
-    {
-      "id": 3,
-      "name": "archive-shard-03.json.gz",
-      "messages": 3306,
-      "raw_bytes": 9046006,
-      "gzip_bytes": 2871337,
-      "sha256_plain_gzip": "a7a10f35460cef46a5c54bda8c57de81abbc62ab2446034b58f66687471dd066"
-    },
-    {
-      "id": 4,
-      "name": "archive-shard-04.json.gz",
-      "messages": 3178,
-      "raw_bytes": 8683233,
-      "gzip_bytes": 2754376,
-      "sha256_plain_gzip": "aee24de8b0197b223d2a257b347aab94de0b6d170427930f80071f0159028e7d"
-    },
-    {
-      "id": 5,
-      "name": "archive-shard-05.json.gz",
-      "messages": 3223,
-      "raw_bytes": 8891798,
-      "gzip_bytes": 2823644,
-      "sha256_plain_gzip": "13264949407f9a9ae108fd30c4a1cd8125f064668a6057c01c162b57f5c60383"
-    },
-    {
-      "id": 6,
-      "name": "archive-shard-06.json.gz",
-      "messages": 3265,
-      "raw_bytes": 8617276,
-      "gzip_bytes": 2716450,
-      "sha256_plain_gzip": "8ddb5fade0e723701ecccc5a22499ef0f7e8ae336cc1b5116eca6de1dfd102be"
-    },
-    {
-      "id": 7,
-      "name": "archive-shard-07.json.gz",
-      "messages": 3123,
-      "raw_bytes": 8828699,
-      "gzip_bytes": 2801061,
-      "sha256_plain_gzip": "2c608483ab287341d705c0925e4b31c66766bb11ed91e6017fef547cd043dd35"
-    },
-    {
-      "id": 8,
-      "name": "archive-shard-08.json.gz",
-      "messages": 3246,
-      "raw_bytes": 8869150,
-      "gzip_bytes": 2796652,
-      "sha256_plain_gzip": "ef89c1cb87cfc1620ccd19f8feffa836d3cbd9ce211c810b831492de8655984c"
-    },
-    {
-      "id": 9,
-      "name": "archive-shard-09.json.gz",
-      "messages": 3302,
-      "raw_bytes": 8851789,
-      "gzip_bytes": 2786077,
-      "sha256_plain_gzip": "ac7f47d51058e9ce96f5e5706a2e04a116279aeb6b941de960efe6ab08d4c3f5"
-    },
-    {
-      "id": 10,
-      "name": "archive-shard-10.json.gz",
-      "messages": 3130,
-      "raw_bytes": 8402029,
-      "gzip_bytes": 2658232,
-      "sha256_plain_gzip": "5e32496eabc4c8219a4a0c5916b18cc480d58b429522fad73e43a236340e96d0"
-    },
-    {
-      "id": 11,
-      "name": "archive-shard-11.json.gz",
-      "messages": 3238,
-      "raw_bytes": 9412808,
-      "gzip_bytes": 2994323,
-      "sha256_plain_gzip": "2f2ed11fa7684d38468f95059b0d0925a7dbf1370ab2de7e766bddefa42f5e87"
-    },
-    {
-      "id": 12,
-      "name": "archive-shard-12.json.gz",
-      "messages": 3326,
-      "raw_bytes": 9480134,
-      "gzip_bytes": 3006284,
-      "sha256_plain_gzip": "17f8ec197da45ed9c1cdf3d6279c37f9e3badc6154c7f7898d7fa869c5a00bc5"
-    },
-    {
-      "id": 13,
-      "name": "archive-shard-13.json.gz",
-      "messages": 3352,
-      "raw_bytes": 9253850,
-      "gzip_bytes": 2916741,
-      "sha256_plain_gzip": "cf477ce8ee1567f6635c97439ff24fc3728a142ef4bf3f29bd10babb5ba030cc"
-    },
-    {
-      "id": 14,
-      "name": "archive-shard-14.json.gz",
-      "messages": 3299,
-      "raw_bytes": 9019291,
-      "gzip_bytes": 2855340,
-      "sha256_plain_gzip": "9088269a91a65705d14ba3b8c6834441955d766a791c183ce6894e0dc707108f"
-    },
-    {
-      "id": 15,
-      "name": "archive-shard-15.json.gz",
-      "messages": 3236,
-      "raw_bytes": 8646163,
-      "gzip_bytes": 2732638,
-      "sha256_plain_gzip": "889a9d712d66ec060e75e19741ab75174dfb5612c279cabb4fe46080529190cf"
-    }
+    {"id":0,"name":"archive-shard-00.enc","messages":3310,"plaintext_gzip_bytes":2968553,"ciphertext_bytes":2968569,"iv_b64":"5ywY-JwAFi7Y7Z0a","sha256_ciphertext":"e3ed8b0ee5d40461f5383eba365da4623e1223d91282c48c0a711b3531bd2c9f"},
+    {"id":1,"name":"archive-shard-01.enc","messages":3286,"plaintext_gzip_bytes":2794607,"ciphertext_bytes":2794623,"iv_b64":"u1ljqAv00vfhB1wZ","sha256_ciphertext":"5b8cc62fff7e54ab6dece0e47efe0be9a0c6eb6aaacc8b709d43bcc2207749f0"},
+    {"id":2,"name":"archive-shard-02.enc","messages":3257,"plaintext_gzip_bytes":2699185,"ciphertext_bytes":2699201,"iv_b64":"w3gc3N8k9jDSxFpS","sha256_ciphertext":"901a027b4b77923dc89287764351e5ffba841cf357e477369db57ddd3f713ecf"},
+    {"id":3,"name":"archive-shard-03.enc","messages":3306,"plaintext_gzip_bytes":2871337,"ciphertext_bytes":2871353,"iv_b64":"xO1V01_ab7F1Vwl5","sha256_ciphertext":"67ec62bd48242af9b49fc1063249ca430485e12dd2a924385089c7b5dfbfac6e"},
+    {"id":4,"name":"archive-shard-04.enc","messages":3178,"plaintext_gzip_bytes":2754376,"ciphertext_bytes":2754392,"iv_b64":"r8yX7Szs4sLty7Ya","sha256_ciphertext":"ff7b694c4a5e15e9d71f11634e7abf43c482332fd901d19fd5dafc34c08cfe95"},
+    {"id":5,"name":"archive-shard-05.enc","messages":3223,"plaintext_gzip_bytes":2823644,"ciphertext_bytes":2823660,"iv_b64":"t0UP9-AXkuTeVH8n","sha256_ciphertext":"541b3ecbaa50c9d8120c8d23af5900c8f0d7dea5360eaf92fab428c961deda9c"},
+    {"id":6,"name":"archive-shard-06.enc","messages":3265,"plaintext_gzip_bytes":2716450,"ciphertext_bytes":2716466,"iv_b64":"USGuWF7jc6l_ROl8","sha256_ciphertext":"d1bfd15a15ac2f83774b01f1f5b549c8fc31ef489d2a61c1573d70d99ce56561"},
+    {"id":7,"name":"archive-shard-07.enc","messages":3123,"plaintext_gzip_bytes":2801061,"ciphertext_bytes":2801077,"iv_b64":"-ghqG2oGPE1E4mCo","sha256_ciphertext":"576eb2967936954934211d3f0595fd6e26deab84accd18ee119c9dc7042e7d97"},
+    {"id":8,"name":"archive-shard-08.enc","messages":3246,"plaintext_gzip_bytes":2796652,"ciphertext_bytes":2796668,"iv_b64":"XN_rf25_YtplCNid","sha256_ciphertext":"399fde344c4f68054dd7554bd1175e50ecbf02dd8fabcfc8aeaa5db408dfe156"},
+    {"id":9,"name":"archive-shard-09.enc","messages":3302,"plaintext_gzip_bytes":2786077,"ciphertext_bytes":2786093,"iv_b64":"r1Yg1d_rjwx2UaHO","sha256_ciphertext":"4a53a673d6a3b06390e7e911781797d2f4c5e090a587283d05c07c3f5a2bd306"},
+    {"id":10,"name":"archive-shard-10.enc","messages":3130,"plaintext_gzip_bytes":2658232,"ciphertext_bytes":2658248,"iv_b64":"H43ti52_odj_VrB0","sha256_ciphertext":"4c49c870531aa8ff9bb25dced06f9b0e6eaefff2cd1f9d8a26083636ec11110d"},
+    {"id":11,"name":"archive-shard-11.enc","messages":3238,"plaintext_gzip_bytes":2994323,"ciphertext_bytes":2994339,"iv_b64":"T4mZ7d8woADh3Cld","sha256_ciphertext":"a2a8a0567e0f84510598127690a5055fee2559d29549f215cc5af3af60a084b7"},
+    {"id":12,"name":"archive-shard-12.enc","messages":3326,"plaintext_gzip_bytes":3006284,"ciphertext_bytes":3006300,"iv_b64":"EMMM87RdgiFa6iLU","sha256_ciphertext":"417b2218974e3da9e6f97a0a5257bed21e872030c6719f579659b610fd3416b6"},
+    {"id":13,"name":"archive-shard-13.enc","messages":3352,"plaintext_gzip_bytes":2916741,"ciphertext_bytes":2916757,"iv_b64":"w-LQEfUan8RjNm1r","sha256_ciphertext":"6a3083896a76d937334bee11d0c202c5432e2aec42e9b02b4f91478332291d41"},
+    {"id":14,"name":"archive-shard-14.enc","messages":3299,"plaintext_gzip_bytes":2855340,"ciphertext_bytes":2855356,"iv_b64":"9J7bPvSab7iJ8lu-","sha256_ciphertext":"aed6109133d12203a0af1f1a3e761a0afb09c605fab43109e8f01488257aff8f"},
+    {"id":15,"name":"archive-shard-15.enc","messages":3236,"plaintext_gzip_bytes":2732638,"ciphertext_bytes":2732654,"iv_b64":"g2xbEI86Mxl20you","sha256_ciphertext":"2feb922e02b42ec6e5927bcbcbc86fd4d19341821b3651158d06f9df909ee91a"}
   ]
 }

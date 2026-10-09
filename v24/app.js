@@ -9,6 +9,8 @@ let annotations = loadAnnotations();
 let shardCache = new Map(); // id -> payload
 let shardLRU = [];
 let currentResults = new Map(); // key -> message for currently shown results
+let childrenIndex = new Map(); // rebuilt parent -> child keys from authoritative prev pointers
+let navIndexBuilt = false;
 let readerKey = null;
 let searchSerial = 0;
 let lastSearchRan = false;
@@ -247,6 +249,11 @@ function isAlternate(m){
   if(Array.isArray(m.contexts)&&m.contexts.length)return m.contexts.some(c=>!c.active);
   return !m.active;
 }
+function nextKeysFor(m){
+  if(!m)return[];
+  return navIndexBuilt ? (childrenIndex.get(m.key)||[]) : (m.next||[]);
+}
+
 function passesFilters(m,opt){
   if(opt.account && m.account!==opt.account)return false;
   if(opt.role && m.role!==opt.role)return false;
@@ -293,12 +300,17 @@ async function runSearch(){
   currentResults.clear();
   $("results").innerHTML="";
   let total=0, best=[];
+  const navBuild = navIndexBuilt ? null : new Map();
   try{
     for(let i=0;i<manifest.shards.length;i++){
       if(serial!==searchSerial)return;
       setStatus(`Searching shard ${i+1} of ${manifest.shards.length}…`);
       let p=await loadShard(manifest.shards[i].id,{cache:false});
       for(const m of p.messages){
+        if(navBuild && m.prev){
+          if(!navBuild.has(m.prev))navBuild.set(m.prev,[]);
+          navBuild.get(m.prev).push({key:m.key,time:m.time||0});
+        }
         if(!passesFilters(m,opt))continue;
         const mi=query?matchMessage(m,query,opt.mode):{ok:true,idx:0,len:0};
         if(!mi.ok)continue;
@@ -307,6 +319,15 @@ async function runSearch(){
       }
       p=null;
       await sleep0();
+    }
+    if(navBuild){
+      const rebuilt=new Map();
+      for(const [parent,items] of navBuild.entries()){
+        items.sort((a,b)=>a.time-b.time);
+        rebuilt.set(parent,items.map(x=>x.key));
+      }
+      childrenIndex=rebuilt;
+      navIndexBuilt=true;
     }
     best.sort((a,b)=>opt.order==="oldest"?(a.m.time||0)-(b.m.time||0):(b.m.time||0)-(a.m.time||0));
     if(best.length>MAX_RESULTS)best.length=MAX_RESULTS;
@@ -414,7 +435,7 @@ window.toggleContext=async k=>{
     const keys=[];
     if(m?.prev)keys.push(m.prev);
     keys.push(k);
-    for(const n of (m?.next||[]).slice(0,3))keys.push(n);
+    for(const n of nextKeysFor(m).slice(0,3))keys.push(n);
     const msgs=await getMessages(keys);
     const map=new Map(msgs.map(x=>[x.key,x]));
     e.innerHTML=keys.map(key=>{
@@ -436,11 +457,11 @@ async function renderReader(){
     const a=getAnno(m.key);
     $("readerTitle").textContent=m.title||"Untitled";
     $("readerMeta").textContent=`${m.account==="current"?"CURRENT":"LEGACY"} · ${fmtDate(m.time)}`;
-    const kids=(m.next||[]);
+    const kids=nextKeysFor(m);
     let sibs=[];
     if(m.prev){
       const p=await getMessage(m.prev);
-      sibs=(p?.next||[]).filter(Boolean);
+      sibs=nextKeysFor(p).filter(Boolean);
     }
     const idx=sibs.indexOf(m.key);
     const versionBar=sibs.length>1?`<div class="versionBar">
@@ -488,7 +509,7 @@ async function renderReader(){
 window.openReader=k=>{readerKey=k;$("reader").style.display="block";document.body.style.overflow="hidden";renderReader();};
 window.closeReader=()=>{$("reader").style.display="none";document.body.style.overflow="";readerKey=null;};
 window.readerPrev=async()=>{const m=await getMessage(readerKey);if(m?.prev)openReader(m.prev);};
-window.readerNext=async()=>{const m=await getMessage(readerKey);const kids=m?.next||[];if(kids.length===1)openReader(kids[0]);else if(kids.length>1)document.querySelector(".branchChoices")?.scrollIntoView({behavior:"smooth",block:"center"});};
+window.readerNext=async()=>{const m=await getMessage(readerKey);const kids=nextKeysFor(m);if(kids.length===1)openReader(kids[0]);else if(kids.length>1)document.querySelector(".branchChoices")?.scrollIntoView({behavior:"smooth",block:"center"});};
 window.readerSetStatus=v=>{const a=ensureAnno(readerKey);a.status=v;saveAnnotations();toast("Continuity status saved");renderReader();};
 window.readerToggleSaved=()=>{const a=ensureAnno(readerKey);a.saved=!a.saved;saveAnnotations();toast(a.saved?"Passage saved":"Passage unsaved");renderReader();};
 window.readerSaveNote=()=>{const a=ensureAnno(readerKey);a.note=$("readerNoteText").value;saveAnnotations();toast("Note saved");renderReader();};

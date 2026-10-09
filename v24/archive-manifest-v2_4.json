@@ -1,0 +1,180 @@
+{
+  "format": "JOYARCH2-encrypted-shards",
+  "version": 1,
+  "generated_at": "2026-10-09T00:53:12.666Z",
+  "shard_count": 16,
+  "shard_hash": "fnv1a32_mod",
+  "stats": {
+    "current_conversations": 250,
+    "legacy_conversations": 128,
+    "current_unique_messages": 46422,
+    "legacy_unique_messages": 5655,
+    "total_unique_messages": 52077,
+    "current_latest_raw_occurrences": 72857,
+    "legacy_latest_raw_occurrences": 5655,
+    "preserved_prior_legacy_messages": 73,
+    "messages_with_multiple_contexts": 10283,
+    "max_contexts_for_one_message": 7,
+    "text_conflicts": 0,
+    "parent_conflicts": 0
+  },
+  "kdf": {
+    "name": "PBKDF2",
+    "hash": "SHA-256",
+    "iterations": 310000,
+    "salt_b64": "Hiv4PuOoT8dQViXbV_ZB5Q"
+  },
+  "cipher": {
+    "name": "AES-GCM"
+  },
+  "verifier": {
+    "iv_b64": "_yNbeiBt5XgLolHw",
+    "cipher_b64": "7rcuinU39eT4pRz1J2w55Ypg9Vrzpwg-hUSS"
+  },
+  "shards": [
+    {
+      "id": 0,
+      "name": "archive-shard-00.enc",
+      "messages": 3310,
+      "plaintext_gzip_bytes": 2968553,
+      "ciphertext_bytes": 2968569,
+      "iv_b64": "fjX4qgODOHGtM7Kq",
+      "sha256_ciphertext": "64eae9c7aa2f72eaf1be28ede3a515fb8de9df20fc61416857d5d362c2cf83b1"
+    },
+    {
+      "id": 1,
+      "name": "archive-shard-01.enc",
+      "messages": 3286,
+      "plaintext_gzip_bytes": 2794607,
+      "ciphertext_bytes": 2794623,
+      "iv_b64": "WpchMDZsooQQXjiR",
+      "sha256_ciphertext": "8eb42300369e31f4256c15d512b8d660dfff4aaca6a641f8ff828590cd22dc2b"
+    },
+    {
+      "id": 2,
+      "name": "archive-shard-02.enc",
+      "messages": 3257,
+      "plaintext_gzip_bytes": 2699185,
+      "ciphertext_bytes": 2699201,
+      "iv_b64": "beQNxYTq6_Gq77Iz",
+      "sha256_ciphertext": "3a7a326cdea36f8cdd12e37b1da88a778893e24ec9a1d4167a493846e3002d54"
+    },
+    {
+      "id": 3,
+      "name": "archive-shard-03.enc",
+      "messages": 3306,
+      "plaintext_gzip_bytes": 2871337,
+      "ciphertext_bytes": 2871353,
+      "iv_b64": "P3RYpzedv6VK5OTY",
+      "sha256_ciphertext": "5c7d31af5802cd924396122d09844b33a9f5c10f6e493ffeb2d3c161c5840753"
+    },
+    {
+      "id": 4,
+      "name": "archive-shard-04.enc",
+      "messages": 3178,
+      "plaintext_gzip_bytes": 2754376,
+      "ciphertext_bytes": 2754392,
+      "iv_b64": "1DUxPZdch3YJzwQo",
+      "sha256_ciphertext": "af0a2eb4acd60cff59bf40e72c8318a315577ede723d1ce9a8bf6cd0112e9c46"
+    },
+    {
+      "id": 5,
+      "name": "archive-shard-05.enc",
+      "messages": 3223,
+      "plaintext_gzip_bytes": 2823644,
+      "ciphertext_bytes": 2823660,
+      "iv_b64": "wqBlJuIlQAwlRvUW",
+      "sha256_ciphertext": "ac141124ac3afdbc6bf3eb68ca6f3132dbcff556cdc43c4ea863bf94eaf1bcad"
+    },
+    {
+      "id": 6,
+      "name": "archive-shard-06.enc",
+      "messages": 3265,
+      "plaintext_gzip_bytes": 2716450,
+      "ciphertext_bytes": 2716466,
+      "iv_b64": "BPYLISphoSi0YKue",
+      "sha256_ciphertext": "1c373b14687901e859021af7eebede1a6abe4dab621aa983fbad1dbed4035807"
+    },
+    {
+      "id": 7,
+      "name": "archive-shard-07.enc",
+      "messages": 3123,
+      "plaintext_gzip_bytes": 2801061,
+      "ciphertext_bytes": 2801077,
+      "iv_b64": "nB1NCwhMY_YKfl39",
+      "sha256_ciphertext": "32f2d5a525c059662d72035037a38b0fcb70e24577982bf7b2fd2803d0ebf8b4"
+    },
+    {
+      "id": 8,
+      "name": "archive-shard-08.enc",
+      "messages": 3246,
+      "plaintext_gzip_bytes": 2796652,
+      "ciphertext_bytes": 2796668,
+      "iv_b64": "u1g3e0p85eAXCqLl",
+      "sha256_ciphertext": "98cca0d52e1028bdab57581fa60a7496c5f385ea2eb32066d7dba5169bde01d2"
+    },
+    {
+      "id": 9,
+      "name": "archive-shard-09.enc",
+      "messages": 3302,
+      "plaintext_gzip_bytes": 2786077,
+      "ciphertext_bytes": 2786093,
+      "iv_b64": "hqhu-6K8NYO2XmU-",
+      "sha256_ciphertext": "91747c6ec6ff457520df1716c57cda3e6d054d856ceefe5df057f755bea6cf7a"
+    },
+    {
+      "id": 10,
+      "name": "archive-shard-10.enc",
+      "messages": 3130,
+      "plaintext_gzip_bytes": 2658232,
+      "ciphertext_bytes": 2658248,
+      "iv_b64": "SyaK7Q0fOdIjlVI3",
+      "sha256_ciphertext": "1d44cd310ca8f00ca48aed04852dd84bdf91bbb8a59ad68665fc3b672980b7df"
+    },
+    {
+      "id": 11,
+      "name": "archive-shard-11.enc",
+      "messages": 3238,
+      "plaintext_gzip_bytes": 2994323,
+      "ciphertext_bytes": 2994339,
+      "iv_b64": "Me5Ofg8U0ZRr1BO9",
+      "sha256_ciphertext": "3a23d6acc454d8024022785ee8181a292fcf1a454d3fc53d16a87bed97d93d94"
+    },
+    {
+      "id": 12,
+      "name": "archive-shard-12.enc",
+      "messages": 3326,
+      "plaintext_gzip_bytes": 3006284,
+      "ciphertext_bytes": 3006300,
+      "iv_b64": "jd3hjtc_IPfdv5of",
+      "sha256_ciphertext": "ef8910bded6b127e34b6118c160c4c2536faf198a69baec7408f205bbae09fc0"
+    },
+    {
+      "id": 13,
+      "name": "archive-shard-13.enc",
+      "messages": 3352,
+      "plaintext_gzip_bytes": 2916741,
+      "ciphertext_bytes": 2916757,
+      "iv_b64": "delB8zAAX06HIs6D",
+      "sha256_ciphertext": "7dcd014469a9e5a4d3a2d07570a00d0ed2f934927fec8d4921ac9e8e2a543c63"
+    },
+    {
+      "id": 14,
+      "name": "archive-shard-14.enc",
+      "messages": 3299,
+      "plaintext_gzip_bytes": 2855340,
+      "ciphertext_bytes": 2855356,
+      "iv_b64": "FS8nMqKkY01BQAFw",
+      "sha256_ciphertext": "c0f0209d4bed11f0e06b14c103d399e5c1bd8c0ecdb7007e6a6a3db126bf4c63"
+    },
+    {
+      "id": 15,
+      "name": "archive-shard-15.enc",
+      "messages": 3236,
+      "plaintext_gzip_bytes": 2732638,
+      "ciphertext_bytes": 2732654,
+      "iv_b64": "5hn9DkwTfQahzzUc",
+      "sha256_ciphertext": "f9882ed6e05a2ecef0c64b6bddba48db2e802782632468b958c138c137b52530"
+    }
+  ]
+}
